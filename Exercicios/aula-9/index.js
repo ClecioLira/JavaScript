@@ -9,5 +9,5 @@ console.log(nome);
 
 // No LET não é aceito a redeclaração
 let nome1 = 'Clécio';
-let nome1 = 'Lira';
+let nome = 'Lira';
 console.log(nome1);
