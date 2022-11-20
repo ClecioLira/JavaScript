@@ -7,7 +7,7 @@ var nome = 'Pedro';
 var nome = 'Otávio';
 console.log(nome);
 
-// No LET não é aceito a redeclaração
+// No LET não é aceito a redeclaração da variável
 let nome1 = 'Clécio';
 let nome = 'Lira';
 console.log(nome1);
