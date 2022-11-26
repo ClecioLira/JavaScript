@@ -14,7 +14,7 @@ console.log(umaString.indexOf('texto'));
 console.log(umaString.indexOf('o', 4))
 console.log(umaString.lastIndexOf('m', 4))
 
-// trocar a palavra da string
+// trocar a palavra da strClécio de Lira Alvesing
 console.log(umaString.replace('Um', 'Outro'));
 
 // saber o tamanho da string
