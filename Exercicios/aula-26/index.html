@@ -28,11 +28,13 @@
             <p>Obesidade grau 3</p>
         </article>
         <h3>Calcule seu IMC</h3>
-        <p><label for="ipeso">Peso:</label></p>
-        <input type="number" name="peso" id="ipeso" placeholder="(Ex: 50,5)">
-        <p><label for="ialtura">Altura:</label></p>
-        <input type="number" name="altura" id="ialtura" placeholder="(Ex: 1,70)"> <br>
-        <input id="botao" type="button" value="Calcular" onclick="calcular()">
+        <form action="/" id="form" method="post">
+            <p><label for="ipeso">Peso:</label></p>
+            <input type="number" name="peso" id="ipeso" placeholder="(Ex: 50.5)" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any">
+            <p><label for="ialtura">Altura:</label></p>
+            <input type="number" name="altura" id="ialtura" placeholder="(Ex: 1.70)" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any"> <br>
+            <input id="botao" type="submit" value="Calcular">
+        </form>
         <div id="res"></div>
     </section>
 
