@@ -1,4 +1,4 @@
-// For in - estrutura de repetição
+// For in - estrutura de repetição - Ler os indices ou chaves do objetos
 const frutas = ['Pera', 'Uva', 'Maça']
 for (let indice in frutas) {
     console.log(frutas[indice])
