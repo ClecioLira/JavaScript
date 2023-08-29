@@ -3,22 +3,37 @@ const btnTarefa = document.querySelector('.btn-tarefa');
 const tarefas = document.querySelector('.tarefas');
 
 function criaLi() { //Cria uma lista
-    const li = document.createElement('li')
+    let li = document.createElement('li')
     return li
 }
 
 function criaTarefa(textoInput) { // Adiciona a lista no html
-    const li = criaLi()
-    li.innerHTML = textoInput
+    let li = criaLi()
+    li.innerText = textoInput
     tarefas.appendChild(li)
     limpaInput()
     criaBotaoApagar(li)
+    salvarTarefas()
+}
+
+function salvarTarefas() { // Deixa as tarefas a salvo dentro de um mini banco de dados que existe dentro do navegador
+    let liTarefas = tarefas.querySelectorAll('li')
+    let listaDeTarefas = []
+
+    for (let tarefa of liTarefas) {
+        let tarefaTexto = tarefa.innerText
+        tarefaTexto = tarefaTexto.replace('Apagar', '').trim()
+        listaDeTarefas.push(tarefaTexto)
+    }
+
+    let tarefaJSON = JSON.stringify(listaDeTarefas)
+    localStorage.setItem('tarefas', tarefaJSON)
 }
 
 function criaBotaoApagar(li) { // Cria o botao apagar tarefa
     li.innerHTML += '  '
-    const botaoApagar = document.createElement('button')
-    botaoApagar.innerHTML = 'Apagar'
+    let botaoApagar = document.createElement('button')
+    botaoApagar.innerText = 'Apagar'
     botaoApagar.setAttribute('class', 'apagar')
     botaoApagar.setAttribute('title', 'Apagar esta tarefa')
     li.appendChild(botaoApagar)
@@ -42,8 +57,20 @@ btnTarefa.addEventListener('click', function() { // Configura o click no botao p
 })
 
 document.addEventListener('click', function(e) { // Seleciona o botao apagar e faz ele apagar a tarefa da lista
-    const el = e.target
+    let el = e.target
     if (el.classList.contains('apagar')) {
         el.parentElement.remove()
+        salvarTarefas()
     }
 })
+
+function adicionaTarefaSalva() {
+    if (!localStorage.getItem('tarefas')) return
+    let tarefas = localStorage.getItem('tarefas')
+    let listaDeTarefas = JSON.parse(tarefas)
+
+    for (let tarefa of listaDeTarefas) {
+        criaTarefa(tarefa)
+    }
+}
+adicionaTarefaSalva()
