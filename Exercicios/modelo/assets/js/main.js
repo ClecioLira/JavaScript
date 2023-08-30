@@ -16,6 +16,20 @@ function criaTarefa(textoInput) { // Adiciona a lista no html
     salvarTarefas()
 }
 
+function criaBotaoApagar(li) { // Cria o botao apagar tarefa
+    li.innerHTML += '  '
+    let botaoApagar = document.createElement('button')
+    botaoApagar.innerText = 'Apagar'
+    botaoApagar.setAttribute('class', 'apagar')
+    botaoApagar.setAttribute('title', 'Apagar esta tarefa')
+    li.appendChild(botaoApagar)
+}
+
+function limpaInput() { // Limpa a barra do input após eu adicionar a tarefa
+    inputTarefa.value = ''
+    inputTarefa.focus()
+}
+
 function salvarTarefas() { // Deixa as tarefas a salvo dentro de um mini banco de dados que existe dentro do navegador
     let liTarefas = tarefas.querySelectorAll('li')
     let listaDeTarefas = []
@@ -30,19 +44,16 @@ function salvarTarefas() { // Deixa as tarefas a salvo dentro de um mini banco d
     localStorage.setItem('tarefas', tarefaJSON)
 }
 
-function criaBotaoApagar(li) { // Cria o botao apagar tarefa
-    li.innerHTML += '  '
-    let botaoApagar = document.createElement('button')
-    botaoApagar.innerText = 'Apagar'
-    botaoApagar.setAttribute('class', 'apagar')
-    botaoApagar.setAttribute('title', 'Apagar esta tarefa')
-    li.appendChild(botaoApagar)
-}
+function adicionaTarefaSalva() {
+    if (!localStorage.getItem('tarefas')) return
+    let tarefas = localStorage.getItem('tarefas')
+    let listaDeTarefas = JSON.parse(tarefas)
 
-function limpaInput() { // Limpa a barra do input após eu adicionar a tarefa
-    inputTarefa.value = ''
-    inputTarefa.focus()
+    for (let tarefa of listaDeTarefas) {
+        criaTarefa(tarefa)
+    }
 }
+adicionaTarefaSalva()
 
 inputTarefa.addEventListener('keypress', function(e) { // Pressionar a tecla enter para adicionar a lista
     if (e.keyCode === 13) {
@@ -63,14 +74,3 @@ document.addEventListener('click', function(e) { // Seleciona o botao apagar e f
         salvarTarefas()
     }
 })
-
-function adicionaTarefaSalva() {
-    if (!localStorage.getItem('tarefas')) return
-    let tarefas = localStorage.getItem('tarefas')
-    let listaDeTarefas = JSON.parse(tarefas)
-
-    for (let tarefa of listaDeTarefas) {
-        criaTarefa(tarefa)
-    }
-}
-adicionaTarefaSalva()
