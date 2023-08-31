@@ -90,6 +90,5 @@ document.addEventListener('click', function(e) {
     let el = e.target
     if (el.classList.contains('feito')) {
         el.innerText = 'Feito'
-        salvarTarefas()
     }
 })
