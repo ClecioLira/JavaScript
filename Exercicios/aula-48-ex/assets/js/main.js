@@ -9,10 +9,11 @@ function criaLi() { //Cria uma lista
 
 function criaTarefa(textoInput) { // Adiciona a lista no html
     let li = criaLi()
-    li.innerText = textoInput
+    let check = criaCheckBox()
+    li.appendChild(check)
+    li.innerHTML += textoInput
     tarefas.appendChild(li)
     limpaInput()
-    criaBotaoFeito(li)
     criaBotaoApagar(li)
     salvarTarefas()
 }
@@ -31,13 +32,14 @@ function limpaInput() { // Limpa a barra do input após eu adicionar a tarefa
     inputTarefa.focus()
 }
 
-function criaBotaoFeito(li) { // Cria o botão para o cliente marcar se já fez a tarefa
-    li.innerHTML += ' '
-    let botaoCheck = document.createElement('button')
-    botaoCheck.innerText = 'V'
-    botaoCheck.setAttribute('class', 'feito')
-    botaoCheck.setAttribute('title', 'Clique caso já tenha feito a tarefa')
-    li.appendChild(botaoCheck)
+function criaCheckBox() { // Cria o botão para o cliente marcar se já fez a tarefa
+    let check = document.createElement('input')
+    check.setAttribute('class', 'check')
+    check.type = 'checkbox'
+    check.name = 'feito'
+    check.checked = false
+    check.value = 'Tarefa feita'
+    return check
 }
 
 function salvarTarefas() { // Deixa as tarefas a salvo dentro de um mini banco de dados que existe dentro do navegador
@@ -83,12 +85,5 @@ document.addEventListener('click', function(e) { // Seleciona o botao apagar e f
     if (el.classList.contains('apagar')) {
         el.parentElement.remove()
         salvarTarefas()
-    }
-})
-
-document.addEventListener('click', function(e) {
-    let el = e.target
-    if (el.classList.contains('feito')) {
-        el.innerText = 'Feito'
     }
 })

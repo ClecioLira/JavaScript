@@ -34,6 +34,7 @@ input {
     border-radius: .5rem;
     border: 1px solid #0B3C49;
     margin-right: 2rem;
+    margin-bottom: 2rem;
     background-color: #FCEFEF;
 }
 ul {
@@ -45,13 +46,24 @@ li {
     font-size: 1.3rem;
     white-space: normal;
     overflow-wrap: break-word;
+    list-style-type: none;
 }
-ul li::marker {
-    font-size: 1.5rem;
+
+.check {
+    width: auto;
+    margin-right: 1rem;
+    margin-left: -1rem;
+
+    transform: scale(1.5);
+}
+.check::after {
+    background-color: #7FD8BE;
+    color: #000;
 }
 
 
 .btn-tarefa {
+    margin-left: -1.5rem;
     padding: .5rem .2rem .5rem .2rem;
     border-radius: .5rem;
     border: 1px solid #000;
