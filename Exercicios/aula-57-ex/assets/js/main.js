@@ -1,3 +1,4 @@
+// factory function
 function criaCalculadora() {
     return {
         // atributos
