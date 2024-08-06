@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Modelo</title>
-</head>
-
-<body>
+<%- include('includes/head') %>
 
   <section class="container">
-    <h1>Lorem ipsum dolor sit amet</h1>
-    <form action="/" method="post">
-      <label>Cliente</label>
-      <input type="text" name="cliente" id="">
-      <button type="submit">Enviar</button>
-    </form>
+    <h1>
+      Titulo
+
+      <%# numeros.forEach(num => {%>
+        <%#= num %>
+      <%# }) %>
+      <!-- <%#- typeof titulo !== 'undefined'? titulo : undefined %> -->
+      <!-- <%#=titulo%><br> ESTE ESCREVE TUDO QUE FOR COLOCADO -->
+      <!-- <%#-titulo%> ESTE RECONHECE AS TAGS HTML -->
+
+      <!-- <% CONTROLE DE FLUXO (IF, FOR...) %> -->
+      <!-- <%= IMPRIME ESCAPANDO CARACTERES %> -->
+      <!-- <%- IMPRIME SEM ESCAPAR CARACTERES %> -->
+      <!-- <%# COMETARIO  %> -->
+      <!-- <% INCLUDE('CAMINHO/ARQUIVO') %> -->
+    </h1>
   </section>
 
-  <script src="./assets/js/bundle.js"></script>
-</body>
-
-</html>
+<%- include('includes/footer') %>
