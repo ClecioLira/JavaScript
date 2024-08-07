@@ -1,26 +1,27 @@
-require('dotenv').config()
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
+require('dotenv').config() //variaveis de ambiente configuradas no .env
+const express = require('express') //chama o express
+const app = express() //inicia o express
 
-mongoose.connect(process.env.CONNECTIONSTRING)
+const mongoose = require('mongoose') //chama o mongoose
+mongoose.connect(process.env.CONNECTIONSTRING) //conecta o mongoose ao banco de dados
     .then(() => {
         app.emit('Pronto')
     })
     .catch(error => console.log(error))
 
 const session = require('express-session')
-const MongoStore = require('connect-mongo')
-const flash = require('connect-flash')
-const routes = require('./routes')
-const path = require('path')
-const helmet = require('helmet')
-const csrf = require('csurf')
-const {middlewareGlobal, checkCsrfError, csrfMiddleware} = require('./src/middlewares/middleware')
+const MongoStore = require('connect-mongo') //salvar as sessoes dentro da base de dados
+const flash = require('connect-flash') //mensagens autodestrutivas que só aparece uma vez, sem sessão essas mensagens não aparecem
+const routes = require('./routes') //rotas da aplicação
+const path = require('path') //caminhos
+const helmet = require('helmet') //segurança recomendado pelo express
+const csrf = require('csurf') //cria um token que nao deixa nenhum site externo invadir o nosso site
+const {middlewareGlobal, checkCsrfError, csrfMiddleware} = require('./src/middlewares/middleware') //chama os middlewares
 
-app.use(helmet())
-app.use(express.urlencoded({extended: true}))
-app.use(express.static(path.resolve(__dirname, 'public')))
+app.use(helmet()) //usando o helmet
+app.use(express.urlencoded({extended: true})) //pode postar formularios dentro da aplicacao
+app.use(express.json()) //pode postar JSON dentro da aplicacao
+app.use(express.static(path.resolve(__dirname, 'public'))) //arquivos estaticos que podem ser acessados diretamente
 
 const sessionOptions = session({
     secret: 'asdjkl',
@@ -35,8 +36,9 @@ const sessionOptions = session({
 
 app.use(sessionOptions)
 app.use(flash())
-app.set('views', path.resolve(__dirname, 'src', 'views'))
-app.set('view engine', 'ejs')
+app.set('views', path.resolve(__dirname, 'src', 'views')) //caminhos dos nossos EJS
+app.set('view engine', 'ejs') //a engine que renderiza o EJS
+
 app.use(csrf())
 
 //Nossos middlewares
@@ -44,8 +46,9 @@ app.use(middlewareGlobal)
 app.use(checkCsrfError)
 app.use(csrfMiddleware)
 
-app.use(routes)
-app.on('Pronto', () => {
+app.use(routes) //chamando as rotas
+
+app.on('Pronto', () => { //ouve a conexão da aplicação
     app.listen(3000, () => {
         console.log(`Acessar http://localhost:3000`)
         console.log('Servidor executando na porta 3000')
