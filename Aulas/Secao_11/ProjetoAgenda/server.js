@@ -19,6 +19,7 @@ const csrf = require('csurf') //cria um token que nao deixa nenhum site externo 
 const {middlewareGlobal, checkCsrfError, csrfMiddleware} = require('./src/middlewares/middleware') //chama os middlewares
 
 app.use(helmet()) //usando o helmet
+app.use(helmet.referrerPolicy({policy: ["origin", "unsafe-url"]}))
 app.use(express.urlencoded({extended: true})) //pode postar formularios dentro da aplicacao
 app.use(express.json()) //pode postar JSON dentro da aplicacao
 app.use(express.static(path.resolve(__dirname, 'public'))) //arquivos estaticos que podem ser acessados diretamente
