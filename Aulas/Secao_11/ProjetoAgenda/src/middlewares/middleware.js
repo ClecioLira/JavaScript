@@ -26,8 +26,8 @@ exports.loginRequired = (req, res, next) => {
         req.flash('erros', 'Você precisa fazer o login.')
         req.session.save(function() {
             res.redirect('/')
-            return
         })
+        return
     }
     next()
 }
