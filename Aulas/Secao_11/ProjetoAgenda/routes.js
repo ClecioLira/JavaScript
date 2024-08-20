@@ -9,5 +9,6 @@ route.get('/', homeController.index)
 
 // Rotas login
 route.get('/login/', loginController.index)
+route.post('/login/criar', loginController.criar)
 
 module.exports = route
