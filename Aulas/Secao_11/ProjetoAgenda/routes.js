@@ -1,12 +1,17 @@
 const express = require('express')
 const route = express.Router()
-const HomeController = require('./src/controllers/HomeController')
-const LoginController = require('./src/controllers/LoginController')
+const homeController = require('./src/controllers/homeController')
+const contatoController = require('./src/controllers/contatoController')
+const sobreController = require('./src/controllers/sobreController')
 
-//ROTA HOME
-route.get('/', HomeController.index) //pega a exportação da pagina index no HomeController e renderiza ela
+// Rotas home
+route.get('/', homeController.paginaInicial)
+route.post('/', homeController.trataPost)
 
-//ROTA LOGIN
-route.get('/login/index', LoginController.index) //pega a exportação da pagina login no LoginController e renderiza ela
+// Rotas contato
+route.get('/contato', contatoController.paginaInicial)
+
+// Rotas sobre
+route.get('/sobre', sobreController.paginaInicial)
 
 module.exports = route
