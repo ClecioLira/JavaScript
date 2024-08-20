@@ -3,14 +3,11 @@ exports.middlewareGlobal = (req, res, next) => {
     next()
 }
 
-exports.outroMiddleware = (req, res, next) => {  
-    next()
-}
-
 exports.checkCsrfError = (erro, req, res, next) => {
-    if(erro && erro.code == 'EBADCSRFTOKEN') {
+    if(erro) {
         return res.render('404')
     }
+    next()
 }
 
 exports.csrfMiddleware = (req, res, next) => {
