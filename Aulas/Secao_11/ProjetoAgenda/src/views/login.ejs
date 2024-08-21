@@ -12,18 +12,20 @@
         <%- include('includes/messages') %>
 
         <div class="row">
-            <div class="col-lg">
+            <div class="col-lg my-5">
                 <h4>Faça o seu cadastro</h4>
-                <form action="/login/criar" method="POST">
+                <form class="form-cadastro" action="/login/criar" method="POST">
                     <input type="hidden" name="_csrf" value=<%= csrfToken%>>
                     <div class="form-group">
                       <label>Seu email</label>
-                      <input type="email" class="form-control" name="email">
+                      <input type="email" class="form-control" name="email" id="emailCad">
+                      <small class="text-danger erroEmailCad"></small>
                     </div>
 
                     <div class="form-group">
                       <label>Sua senha</label>
-                      <input type="password" class="form-control" name="password">
+                      <input type="password" class="form-control" name="password" id="senhaCad">
+                      <small class="text-danger erroSenhaCad"></small>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Criar</button>
@@ -31,18 +33,20 @@
                   </form>
             </div>
 
-            <div class="col-lg">
+            <div class="col-lg my-5">
                 <h4>Faça o seu login</h4>
-                <form action="/login/entrar" method="POST">
+                <form class="form-login" action="/login/entrar" method="POST">
                     <input type="hidden" name="_csrf" value=<%= csrfToken%>>
                     <div class="form-group">
                       <label>Seu email</label>
-                      <input type="email" class="form-control" name="email">
+                      <input type="email" class="form-control" name="email" id="emailLog">
+                      <small class="text-danger erroEmailLog"></small>
                     </div>
 
                     <div class="form-group">
                       <label>Sua senha</label>
-                      <input type="password" class="form-control" name="password">
+                      <input type="password" class="form-control" name="password" id="senhaLog">
+                      <small class="text-danger erroSenhaLog"></small>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Entrar</button>
