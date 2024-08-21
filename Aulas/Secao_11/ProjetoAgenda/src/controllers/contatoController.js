@@ -38,3 +38,28 @@ exports.editIndex = async (req, res) => {
 
     res.render('contato', {contato})
 }
+
+exports.edit = async (req, res) => {
+    try {
+        if(!req.params.id) return res.render('404')
+            const contato = new Contato(req.body)
+            await contato.edit(req.params.id)
+        
+            if(contato.erros.length > 0) {
+                req.flash('erros', contato.erros)
+                req.session.save(() => {
+                    res.redirect(`/contato/${contato.contato._id}`)
+                })
+                return
+            }
+        
+            req.flash('success', 'Contato editado com sucesso')
+            req.session.save(() => {
+                res.redirect(`/contato/${contato.contato._id}`) // redireciona para a pagina com os dados do contato cadastrado
+            })
+            return
+    } catch (e) {
+        console.log(e)
+        res.render('404')
+    }
+}
