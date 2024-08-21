@@ -29,17 +29,11 @@ export default class Cadastro {
         if(!validator.isEmail(emailInput.value)) {
             erroEmail.innerText = 'Email inválido'
             erro = true
-        } else {
-            erroEmail.innerText = ''
-            erro = false
         }
 
         if(passwordInput.value.length < 3 || passwordInput.value.length > 50) {
             erroSenha.innerText = 'Senha precisa ter entre 3 e 50 caracteres'
             erro = true
-        } else {
-            erroSenha.innerText = ''
-            erro = false
         }
 
         if(!erro) el.submit() // caso nao tenha nenhum erro ele envia o formulario

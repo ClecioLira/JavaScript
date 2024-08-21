@@ -30,19 +30,12 @@ export default class Contato {
         if(!nomeInput.value) {
             nomeErro.innerText = 'Nome é um campo obrigatório.'
             erro = true
-        } else {
-            nomeErro.innerText = ''
-            erro = false
         }
 
         if(!telefoneInput.value && !emailInput.value) {
             telefoneErro.innerText = 'Adicione pelo menos um tipo de contato.'
             emailErro.innerText = 'Adicione pelo menos um tipo de contato.'
             erro = true
-        } else {
-            telefoneErro.innerText = ''
-            emailErro.innerText = ''
-            erro = false
         }
 
         if(!erro) el.submit()

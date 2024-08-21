@@ -53,16 +53,10 @@ var Cadastro = /*#__PURE__*/function () {
       if (!validator__WEBPACK_IMPORTED_MODULE_0___default().isEmail(emailInput.value)) {
         erroEmail.innerText = 'Email inválido';
         erro = true;
-      } else {
-        erroEmail.innerText = '';
-        erro = false;
       }
       if (passwordInput.value.length < 3 || passwordInput.value.length > 50) {
         erroSenha.innerText = 'Senha precisa ter entre 3 e 50 caracteres';
         erro = true;
-      } else {
-        erroSenha.innerText = '';
-        erro = false;
       }
       if (!erro) el.submit(); // caso nao tenha nenhum erro ele envia o formulario
     }
@@ -123,18 +117,11 @@ var Contato = /*#__PURE__*/function () {
       if (!nomeInput.value) {
         nomeErro.innerText = 'Nome é um campo obrigatório.';
         erro = true;
-      } else {
-        nomeErro.innerText = '';
-        erro = false;
       }
       if (!telefoneInput.value && !emailInput.value) {
         telefoneErro.innerText = 'Adicione pelo menos um tipo de contato.';
         emailErro.innerText = 'Adicione pelo menos um tipo de contato.';
         erro = true;
-      } else {
-        telefoneErro.innerText = '';
-        emailErro.innerText = '';
-        erro = false;
       }
       if (!erro) el.submit();
     }
@@ -196,16 +183,10 @@ var Login = /*#__PURE__*/function () {
       if (!validator__WEBPACK_IMPORTED_MODULE_0___default().isEmail(emailInput.value)) {
         erroEmail.innerText = 'Email inválido';
         erro = true;
-      } else {
-        erroEmail.innerText = '';
-        erro = false;
       }
       if (passwordInput.value.length < 3 || passwordInput.value.length > 50) {
         erroSenha.innerText = 'Senha precisa ter entre 3 e 50 caracteres';
         erro = true;
-      } else {
-        erroSenha.innerText = '';
-        erro = false;
       }
       if (!erro) el.submit(); // caso nao tenha nenhum erro ele envia o formulario
     }
