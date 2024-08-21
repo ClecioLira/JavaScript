@@ -72,6 +72,78 @@ var Cadastro = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./frontend/modules/Contato.js":
+/*!*************************************!*\
+  !*** ./frontend/modules/Contato.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Contato)
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+var Contato = /*#__PURE__*/function () {
+  function Contato(formClass) {
+    _classCallCheck(this, Contato);
+    this.form = document.querySelector(formClass);
+  }
+  return _createClass(Contato, [{
+    key: "init",
+    value: function init() {
+      this.events();
+    }
+  }, {
+    key: "events",
+    value: function events() {
+      var _this = this;
+      if (!this.form) return;
+      this.form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        _this.validate(e);
+      });
+    }
+  }, {
+    key: "validate",
+    value: function validate(e) {
+      var el = e.target;
+      var nomeInput = el.querySelector('input[name="nome"]');
+      var telefoneInput = el.querySelector('input[name="telefone"]');
+      var emailInput = el.querySelector('input[name="email"]');
+      var nomeErro = document.querySelector('.nomeErro');
+      var telefoneErro = document.querySelector('.telefoneErro');
+      var emailErro = document.querySelector('.emailErro');
+      var erro = false;
+      if (!nomeInput.value) {
+        nomeErro.innerText = 'Nome é um campo obrigatório.';
+        erro = true;
+      } else {
+        nomeErro.innerText = '';
+        erro = false;
+      }
+      if (!telefoneInput.value && !emailInput.value) {
+        telefoneErro.innerText = 'Adicione pelo menos um tipo de contato.';
+        emailErro.innerText = 'Adicione pelo menos um tipo de contato.';
+        erro = true;
+      } else {
+        telefoneErro.innerText = '';
+        emailErro.innerText = '';
+        erro = false;
+      }
+      if (!erro) el.submit();
+    }
+  }]);
+}();
+
+
+/***/ }),
+
 /***/ "./frontend/modules/Login.js":
 /*!***********************************!*\
   !*** ./frontend/modules/Login.js ***!
@@ -30460,14 +30532,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modules_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Login */ "./frontend/modules/Login.js");
 /* harmony import */ var _modules_Cadastro__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/Cadastro */ "./frontend/modules/Cadastro.js");
+/* harmony import */ var _modules_Contato__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/Contato */ "./frontend/modules/Contato.js");
+
 
 
 
 
 var cadastro = new _modules_Cadastro__WEBPACK_IMPORTED_MODULE_3__["default"]('.form-cadastro');
 var login = new _modules_Login__WEBPACK_IMPORTED_MODULE_2__["default"]('.form-login');
+var contato = new _modules_Contato__WEBPACK_IMPORTED_MODULE_4__["default"]('.form-contato');
 cadastro.init();
 login.init();
+contato.init();
 })();
 
 /******/ })()
