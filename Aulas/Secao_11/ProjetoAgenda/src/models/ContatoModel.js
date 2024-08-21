@@ -17,17 +17,11 @@ function Contato(body) { // criando o contato com function constructor
     this.contato = null
 }
 
-Contato.buscaPorId = async function(id) {
-    if(typeof id !== 'string') return
-    const user = await ContatoModel.findById(id) // ou vair retornar um usuario ou vai retornar null
-    return user
-}
-
 Contato.prototype.criar = async function() {
     this.valida()
-
+    
     if(this.erros.length > 0) return
-
+    
     this.contato = await ContatoModel.create(this.body) // manda o contato pronto para o banco de dados
 }
 
@@ -35,9 +29,9 @@ Contato.prototype.valida = function() {
     this.cleanUp()
 
     if(this.body.email && !validator.isEmail(this.body.email)) this.erros.push('Email inválido.')
-
+        
     if(!this.body.nome) this.erros.push('Nome é um campo obrigatório.') // vai analisar se o campo nome está preenchido
-
+    
     if(!this.body.email && !this.body.telefone) { // se nao for enviado nem email nem telefone ele lança um erro
         this.erros.push('Pelo menos um cantato precisa ser enviado: email ou telefone.')
     }
@@ -62,8 +56,29 @@ Contato.prototype.cleanUp = function() {
 Contato.prototype.edit = async function(id) {
     if(typeof id !== 'string') return 
     this.valida()
-
+    
     this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {new: true}) // quando voce atualizar os campos me retorne os dados alterados e nao os antigos
 }
+
+// Metodos estaticos
+Contato.buscaPorId = async function(id) {
+    if(typeof id !== 'string') return
+    const user = await ContatoModel.findById(id) // ou vair retornar um usuario ou vai retornar null
+    return user
+}
+
+Contato.buscaContatos = async function() {
+    const contatos = await ContatoModel.find() // busca os contatos que foram cadastrados
+        .sort({criadoEm: -1}) // ordena na ordem decrescente
+    return contatos
+}
+
+Contato.delete = async function(id) {
+    if(typeof id !== 'string') return // verifica se o id é diferente de uma string
+    const contato = await ContatoModel.findByIdAndDelete(id) // apaga o contato de acordo com o seu id
+    return contato
+}
+
+
 
 module.exports = Contato
