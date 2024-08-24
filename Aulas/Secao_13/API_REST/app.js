@@ -1,21 +1,21 @@
-import express from 'express';
-import homeRoutes from './src/routes/homeRoutes'
+import express from 'express'; // pega o express
+import homeRoutes from './src/routes/homeRoutes' // peha a homeRoutes
 
-class App {
+class App { // cria a class que vai ser exportada
   constructor() {
-    this.app = express();
-    this.middlewares()
-    this.routes()
+    this.app = express(); // app recebe o express
+    this.middlewares() // chama os middlewares
+    this.routes() // chama os routes
   }
 
   middlewares() {
-    this.app.use(express.urlencoded({extended: true}))
-    this.app.use(express.json())
+    this.app.use(express.urlencoded({extended: true})) // usando o alinhamento de objetos
+    this.app.use(express.json()) // usando o alinhamento de json
   }
 
   routes() {
-    this.app.use('/', homeRoutes)
+    this.app.use('/', homeRoutes) // usando o caminho homeroutes
   }
 }
 
-export default new App().app
+export default new App().app // exportaando a classe app
