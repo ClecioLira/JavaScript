@@ -1,5 +1,11 @@
+import dotenv from 'dotenv' // pega o dotenv
+
+dotenv.config() // config do dotenv
+
+import './src/database' // importacao da pasta do banco de dados
+
 import express from 'express'; // pega o express
-import homeRoutes from './src/routes/homeRoutes' // peha a homeRoutes
+import homeRoutes from './src/routes/homeRoutes' // pega a homeRoutes
 
 class App { // cria a class que vai ser exportada
   constructor() {

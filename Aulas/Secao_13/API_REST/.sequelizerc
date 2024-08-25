@@ -1,0 +1,9 @@
+const {resolve} = require('path') // pega apenas o metodo resolve do path
+
+// tipo de exportacao do common
+module.exports = {
+  config: resolve(__dirname, 'src', 'config', 'database.js'), // onde vai ficar o arquivo de configuração
+  'models-path': resolve(__dirname, 'src', 'models'), // caminho dos models
+  'migrations-path': resolve(__dirname, 'src', 'database', 'migrations'), // pasta com os arquivos de alterações que serão feitas no banco de dados
+  'seeders-path': resolve(__dirname, 'src', 'database', 'seeds')
+}
