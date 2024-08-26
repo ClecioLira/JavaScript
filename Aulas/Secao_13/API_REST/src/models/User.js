@@ -57,4 +57,8 @@ export default class User extends Model {
 
     return this
   }
+
+  passwordIsValid(password) {
+    return bcryptjs.compare(password, this.password_hash) // vai comparar se a senha que está cadastrada é igual ao que foi escrita no parametro
+  }
 }
