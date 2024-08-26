@@ -50,7 +50,9 @@ export default class User extends Model {
 
     // adiciona um hook para que antes de salvar ele execute uma funcao que pegue a password adicione o hash e coloque essa senha com o hash na password_hash que é o que vai ser salvo na base de dados
     this.addHook('beforeSave', async user => {
-      user.password_hash = await bcryptjs.hash(user.password, 8)
+      if(user.password) {
+        user.password_hash = await bcryptjs.hash(user.password, 8)
+      }
     })
 
     return this

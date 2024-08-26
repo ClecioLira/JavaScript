@@ -3,7 +3,11 @@ import userController from '../controllers/UserController' // importa a classe u
 
 const router = new Router() // cria uma nova rota
 
-router.post('/', userController.store) // instancia a rota no metodo get e chama o homecontroller no metodo store
+router.post('/', userController.store) // instancia a rota no metodo post e chama o usercontroller no metodo store
+router.get('/', userController.index)
+router.get('/:id', userController.show)
+router.put('/:id', userController.update)
+router.delete('/:id', userController.delete)
 
 export default router // exporta a rota
 
