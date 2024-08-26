@@ -6,6 +6,8 @@ import './src/database' // importacao da pasta do banco de dados
 
 import express from 'express'; // pega o express
 import homeRoutes from './src/routes/homeRoutes' // pega a homeRoutes
+import userRoutes from './src/routes/userRoutes' // pega a homeRoutes
+
 
 class App { // cria a class que vai ser exportada
   constructor() {
@@ -21,6 +23,7 @@ class App { // cria a class que vai ser exportada
 
   routes() {
     this.app.use('/', homeRoutes) // usando o caminho homeroutes
+    this.app.use('/users/', userRoutes) // usando o caminho homeroutes
   }
 }
 
