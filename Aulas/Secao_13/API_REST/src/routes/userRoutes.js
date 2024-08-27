@@ -6,7 +6,7 @@ import loginRequired from '../middlewares/loginRequired' // importacao do loginR
 const router = new Router() // cria uma nova rota
 
 // Não deveria existir
-router.get('/', userController.index) // Lista usuarios
+// router.get('/', userController.index) // Lista usuarios
 // router.get('/:id', userController.show) // Lista usuario
 
 router.post('/', userController.store)

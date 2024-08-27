@@ -8,6 +8,7 @@ import express from 'express'; // pega o express
 import homeRoutes from './src/routes/homeRoutes' // pega a homeRoutes
 import userRoutes from './src/routes/userRoutes' // pega a userRoutes
 import tokenRoutes from './src/routes/tokenRoutes' // pega a tokenRoutes
+import alunoRoutes from './src/routes/alunoRoutes' // pega a alunoRoutes
 
 
 class App { // cria a class que vai ser exportada
@@ -26,6 +27,7 @@ class App { // cria a class que vai ser exportada
     this.app.use('/', homeRoutes) // usando o caminho homeroutes
     this.app.use('/users/', userRoutes) // usando o caminho userroutes
     this.app.use('/tokens/', tokenRoutes) // usando o caminho tokenroutes
+    this.app.use('/alunos/', alunoRoutes) // usando o caminho alunosroutes
   }
 }
 
