@@ -1,13 +1,17 @@
 import {Router} from 'express' // importa o router do express
 import userController from '../controllers/UserController' // importa a classe user controller
 
+import loginRequired from '../middlewares/loginRequired' // importacao do loginRequired
+
 const router = new Router() // cria uma nova rota
 
-router.post('/', userController.store) // instancia a rota no metodo post e chama o usercontroller no metodo store
-router.get('/', userController.index)
-router.get('/:id', userController.show)
-router.put('/:id', userController.update)
-router.delete('/:id', userController.delete)
+// Não deveria existir
+router.get('/', userController.index) // Lista usuarios
+// router.get('/:id', userController.show) // Lista usuario
+
+router.post('/', userController.store)
+router.put('/', loginRequired, userController.update)
+router.delete('/', loginRequired, userController.delete)
 
 export default router // exporta a rota
 
