@@ -1,4 +1,5 @@
 import dotenv from 'dotenv' // pega o dotenv
+import {resolve} from 'path'
 
 dotenv.config() // config do dotenv
 
@@ -22,6 +23,7 @@ class App { // cria a class que vai ser exportada
   middlewares() {
     this.app.use(express.urlencoded({extended: true})) // usando o alinhamento de objetos
     this.app.use(express.json()) // usando o alinhamento de json
+    this.app.use(express.static(resolve(__dirname, 'uploads')))
   }
 
   routes() {

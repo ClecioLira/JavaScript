@@ -8,7 +8,7 @@ class AlunoController { // cria classe
       order: [['id', 'DESC'], [Foto, 'id', 'DESC']], // mostra a lista em formato decrescente
       include: {
         model: Foto,
-        attributes: ['originalname', 'filename']
+        attributes: ['url', 'originalname', 'filename']
       }
     })
     res.json(alunos)
@@ -29,7 +29,7 @@ class AlunoController { // cria classe
         order: [['id', 'DESC'], [Foto, 'id', 'DESC']], // mostra a lista em formato decrescente
         include: {
           model: Foto,
-          attributes: ['originalname', 'filename']
+          attributes: ['url', 'originalname', 'filename']
         }
       })
 
