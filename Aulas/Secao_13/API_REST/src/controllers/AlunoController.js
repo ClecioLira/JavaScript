@@ -1,8 +1,16 @@
 import Aluno from '../models/Aluno' // pega a class Aluno
+import Foto from '../models/Foto'
 
 class AlunoController { // cria classe
   async index(req, res) {
-    const alunos = await Aluno.findAll()
+    const alunos = await Aluno.findAll({
+      attributes: ["id", "nome", "sobrenome", "email", "idade", "peso", "altura"], // mostra apenas os campos listados
+      order: [['id', 'DESC'], [Foto, 'id', 'DESC']], // mostra a lista em formato decrescente
+      include: {
+        model: Foto,
+        attributes: ['originalname', 'filename']
+      }
+    })
     res.json(alunos)
   }
 
@@ -16,7 +24,14 @@ class AlunoController { // cria classe
         })
       }
 
-      const aluno = await Aluno.findByPk(id)
+      const aluno = await Aluno.findByPk(id, {
+        attributes: ["id", "nome", "sobrenome", "email", "idade", "peso", "altura"], // mostra apenas os campos listados
+        order: [['id', 'DESC'], [Foto, 'id', 'DESC']], // mostra a lista em formato decrescente
+        include: {
+          model: Foto,
+          attributes: ['originalname', 'filename']
+        }
+      })
 
       if(!aluno) {
         return res.status(400).json({

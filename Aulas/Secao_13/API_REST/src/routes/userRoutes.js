@@ -9,7 +9,7 @@ const router = new Router() // cria uma nova rota
 router.get('/', userController.index) // Lista usuarios
 // router.get('/:id', userController.show) // Lista usuario
 
-router.post('/', userController.store)
+router.post('/', loginRequired, userController.store)
 router.put('/', loginRequired, userController.update)
 router.delete('/', loginRequired, userController.delete)
 
